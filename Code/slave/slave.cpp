@@ -5,6 +5,9 @@
 #include "slave.h"
 
 #include "setup.h"
+/*
+Original code skeleton taken from https://github.com/araffin/arduino-robust-serial/tree/master by araffin
+*/
 bool update_steppers=false;
 bool is_connected = false; ///< True if the connection with the master is available
 
@@ -17,18 +20,7 @@ void setup()
   Serial.begin(SERIAL_BAUD);
 
   setup_motors(); // För att konfigurera motorerna
-  //setup_sensor();u
-  // Init Motor
-  //pinMode(MOTOR_PIN, OUTPUT);
-  //pinMode(DIRECTION_PIN, OUTPUT);
-  // Stop the car
-  //stop();
-
-  // Init Servo
-  //servomotor.attach(SERVOMOTOR_PIN);
-  // Order between 0 and 180
-  //servomotor.write(INITIAL_THETA);
-
+  
   // Wait until the arduino is connected to master
 
   while(!is_connected)
@@ -62,9 +54,7 @@ void update_motor_orders(){
     int done1=0;
     int done2=0;
     int done3=0;
-    //stepper2.move(100);
-    //stepper2.move(-100);
-    //s_degrees[0]=s_degrees[0]-(s_degrees[0]/1.8);
+  
     while(done1+done2+done3!=3){
       if(abs(s_degrees[0]-1)>1){
         
@@ -143,10 +133,7 @@ void wait_for_received()
   Order rec_order=read_order();
   while (rec_order!=RECEIVED) {
   rec_order=read_order();
-    /*if(rec_order==HELLO or rec_order==ALREADY_CONNECTED)
-    {
-      write_order(ALREADY_CONNECTED);
-    }*/
+    
   };
 }
 
@@ -155,10 +142,7 @@ void wait_for_order(Order wait_order)
   Order rec_order=read_order();
   while (rec_order!=wait_order) {
   rec_order=read_order();
-    /*if(rec_order==HELLO or rec_order==ALREADY_CONNECTED)
-    {
-      write_order(ALREADY_CONNECTED);
-    }*/
+    
   };
 }
 
@@ -206,14 +190,7 @@ void get_messages_from_serial()
         }
         case SERVO:
         {
-          /*
-          int itendon_dist = read_i32();
-          servo_angle=float(itendon_dist);//*SERVO_CONV;//SERVO_CONV*itendon_dist;
-          //servo_angle=dist2deg(servo_angle);
-          s_degrees[current_motor_idx]= -servo_angle;
-          current_motor_idx+=1;
-          current_motor_idx =current_motor_idx % 3;
-          */
+          
           write_order(RECEIVED);
           for(int i=0;i<=2;i++)
           {
@@ -241,26 +218,14 @@ void get_messages_from_serial()
         }
         case MOTOR:
         {
-          // between -100 and 100
-          //motor_speed = read_i8();
-          //send_sensor_data=true;
-          if(DEBUG)
-          {
-            //write_order(MOTOR);
-            //write_i16(motor_speed);
-          }
+          
+          
           break;
         }
         case GET_SENSOR:
         {
-          // between -100 and 100
-          //motor_speed = read_i8();
-          //send_sensor_data=true;
-          if(DEBUG)
-          {
-            //write_order(MOTOR);
-            //write_i16(motor_speed);
-          }
+          
+          
           break;
         }
   			// Unknown order

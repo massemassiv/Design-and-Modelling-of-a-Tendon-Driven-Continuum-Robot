@@ -2,7 +2,7 @@
 #define SETUP_H
 #include <Arduino.h>
 #include <math.h>
-//#include "DRV8825.h"
+
 #include "A4988.h"
 //https://github.com/laurb9/StepperDriver
 
@@ -23,7 +23,6 @@
 #define DIR1 8
 #define STEP1 9
 A4988 stepper1(MOTOR_STEPS, DIR1, STEP1,MODE0, MODE1, MODE2);
-//DRV8825 stepper1(MOTOR_STEPS, DIR1, STEP1, SLEEP, MODE0, MODE1, MODE2);
 
 #define DIR2 2
 #define STEP2 3
