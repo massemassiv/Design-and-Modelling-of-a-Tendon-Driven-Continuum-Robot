@@ -11,6 +11,8 @@ By the act of copying, use, setup or assembly, the user accepts all resulting li
 
 1.0  29 December 2022 -  initial release
 */
+#define SERIAL_BAUD 115200  // Baudrate
+#define DEBUG true
 
 #include <Wire.h>
 float RateRoll, RatePitch, RateYaw;

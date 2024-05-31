@@ -3,7 +3,7 @@
 #include "setup_sensor.h"
 #include "order.h"
 #include "sensor.h"
-#include "parameters.h"
+
 //#include "setup.h"
 
 bool is_connected = false; ///< True if the connection with the master is available
@@ -55,7 +55,7 @@ for(int i=0;i<=2;i++){
   Order pos_order = static_cast<Order>(i+8);
   write_order(pos_order);
   delay(10);
-  //write_i16(static_cast<int16_t>(position_vec[i]));
+  
   write_i16((int16_t)position_vec[i]);
   delay(10);
   wait_for_received();
@@ -64,7 +64,7 @@ for(int i=0;i<=2;i++){
   Order ang_order = static_cast<Order>(i+11);
   write_order(ang_order);
   delay(10);
-  //write_i16(static_cast<int16_t>(angle_vec[i]));
+  
   write_i16((int16_t)angle_vec[i]);
   delay(10);
   wait_for_received();
@@ -96,10 +96,7 @@ void wait_for_received()
   Order rec_order=read_order();
   while (rec_order!=RECEIVED) {
   rec_order=read_order();
-    /*if(rec_order==HELLO or rec_order==ALREADY_CONNECTED)
-    {
-      write_order(ALREADY_CONNECTED);
-    }*/
+    
   };
 }
 void update_position_angle(){};
@@ -112,7 +109,7 @@ void get_messages_from_serial()
     // The first byte received is the instruction
     Order order_received = read_order();
 
-    //write_order(order_received); // Vi skickar rätt saker 
+    
 
     if(order_received == HELLO)
     {
@@ -156,12 +153,11 @@ void get_messages_from_serial()
         case MOTOR:
         {
           // between -100 and 100
-          //motor_speed = read_i8();
+          ;
           send_sensor_data=true;
           if(DEBUG)
           {
-            //write_order(MOTOR);
-            //write_i16(motor_speed);
+           
           }
           break;
         }
@@ -172,8 +168,7 @@ void get_messages_from_serial()
           send_sensor_data=true;
           if(DEBUG)
           {
-            //write_order(MOTOR);
-            //write_i16(motor_speed);
+            
           }
           break;
         }
