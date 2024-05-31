@@ -3,15 +3,13 @@
 #include "setup_sensor.h"
 #include "order.h"
 #include "slave.h"
-#include "parameters.h"
+
 #include "setup.h"
 bool update_steppers=false;
 bool is_connected = false; ///< True if the connection with the master is available
-//int8_t motor_speed = 0;
-//int16_t servo_angle = INITIAL_THETA;
-//Servo servomotor;
 
-void update_motor_orders();
+
+
 
 void setup()
 {
@@ -19,7 +17,7 @@ void setup()
   Serial.begin(SERIAL_BAUD);
 
   setup_motors(); // För att konfigurera motorerna
-  //setup_sensor();
+  //setup_sensor();u
   // Init Motor
   //pinMode(MOTOR_PIN, OUTPUT);
   //pinMode(DIRECTION_PIN, OUTPUT);
@@ -47,26 +45,20 @@ void setup()
   }
 
 }
-void update_motor_orders2();
+void update_motor_orders();
 void loop()
 {
 
   get_messages_from_serial();
   delay(10);
-  /*if (current_motor_idx==0) {
-    update_motor_orders2();
-  
-  }*/
- 
-  //update_motor_orders2();
-  
+
   if(update_steppers){
-    update_motor_orders2();
+    update_motor_orders();
   };
 
 }
 
-void update_motor_orders2(){ 
+void update_motor_orders(){ 
     int done1=0;
     int done2=0;
     int done3=0;

@@ -28,6 +28,3 @@ class Order(Enum):
     RECEIVED_SERVO1 = 17
     RECEIVED_SERVO2 = 18
     RECEIVED_SERVO3 = 19
-
-
-# eGNA ORDERSS

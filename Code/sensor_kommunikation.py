@@ -31,13 +31,7 @@ def get_sensor_data(
         position_vec[i] = read_i16(serial_file)
         write_order(serial_file, Order.RECEIVED)
         time.sleep(0.01)
-        ''' if debug:
 
-        print("position")
-        # print(f"ORDER{i}: ", order)
-        print("AccX", position_vec[0])
-        print("AccY", position_vec[1])
-        print("AccZ", position_vec[2])'''
     for i, w_order in enumerate(angle_order):
         # order = read_order(serial_file)
         wait_for_order(serial_file, w_order, debug=debug)
@@ -59,5 +53,5 @@ if __name__ == "__main__":
     for i in range(100):
         position_vec = [0, 0, 0]
         angle_vec = [0, 0, 0]
-        get_sensor_data2(serial_file, position_vec, angle_vec, debug)
+        get_sensor_data(serial_file, position_vec, angle_vec, debug)
         print("Position: \n", position_vec, "Angle:\n", angle_vec)

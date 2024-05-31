@@ -6,6 +6,9 @@
 #include "A4988.h"
 //https://github.com/laurb9/StepperDriver
 
+#define SERIAL_BAUD 115200  // Baudrate
+// If DEBUG is set to true, the arduino will send back all the received messages
+#define DEBUG true
 
 #define buttonPin 7
 //STEPPERS
@@ -100,9 +103,7 @@ void move_steppers(float *deg)
 
 void setup_motors(){
   
-  // Declare pins as output:
-  //pinMode(stepPin, OUTPUT);
-  //pinMode(dirPin, OUTPUT);
+
 
   int MICROSTEP = 1;
   stepper1.setMicrostep(MICROSTEP);//Microstepping mode: 1, 2, 4, 8, 16 or 32 (where supported by driver)
